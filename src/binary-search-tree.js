@@ -1,4 +1,4 @@
-
+const { Node } = require('../extensions/list-tree.js');
 module.exports = class BinarySearchTree {
   constructor() {
     this.rootElem = null;
@@ -133,13 +133,4 @@ module.exports = class BinarySearchTree {
     return node.data;
   }
 
-}
-
-
-class Node {
-  constructor(data) {
-    this.data = data;
-    this.left = null;
-    this.right = null;
-  }
 }

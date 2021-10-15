@@ -1,25 +1,58 @@
-const { NotImplementedError } = require('../extensions/index.js');
+module.exports = function removeKFromList(list, k) {
+  if (indexOf(list, k) === -1) {
+    return null;
+  } else {
+    while (indexOf(list, k) != -1) {
+      removeAt(list, indexOf(list, k));
+    }
+  }
+  return list;
 
-/**
- * Given a singly linked list of integers l and an integer k,
- * remove all elements from list l that have a value equal to k.
- *
- * @param {List} l
- * @param {Number} k
- * @return {List}
- *
- * @example
- * For l = [3, 1, 2, 3, 4, 5] and k = 3,
- * the output should be [1, 2, 4, 5]
- *
- * Singly - linked lists are already defined with this interface
- * function ListNode(x) {
- *   this.value = x;
- *   this.next = null;
- * }
- */
+  function indexOf(list, element) {
+    let current = list.value;
+    let index = 0;
+    if (current === element) return 0;
+    index++;
 
-module.exports = function removeKFromList(/* l, k */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+    current = list.next;
+
+    while (current) {
+      if (current.value === element) {
+        return index;
+      }
+
+      current = current.next;
+      index++;
+    }
+
+    return -1;
+  }
+}
+
+function removeAt(list, position) {
+  if (position < 0 /*|| position >= list.length*/) {
+    return null;
+  }
+
+  let current = list.next;
+
+  if (position === 0) {
+    list.value = current.value;
+    list.next = current.next;
+  } else {
+    current = list;
+    let prev = null;
+    let index = 0;
+
+    while (index < position) {
+      prev = current;
+      current = current.next;
+      index++;
+    }
+
+    prev.next = current.next;
+  }
+
+  //list.length--;
+  return list;
 }
